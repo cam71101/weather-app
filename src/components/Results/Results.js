@@ -10,8 +10,12 @@ import { Fade, Stagger } from 'react-animation-components';
 
 import classes from './Results.module.css';
 
+import LoadingWheel from '../LoadingWheel/LoadingWheel';
+import FadeIn from 'react-fade-in';
+
 const Results = (props) => {
   const { sendRequest, weatherData, isLoading } = useHttp();
+  const [loading, setLoading] = useState(false);
   const [convertedWeather, setConvertedWeather] = useState();
   const [error, setError] = useState(false);
   const [convertedTemperature, setConvertedTemperature] = useState();
@@ -19,6 +23,7 @@ const Results = (props) => {
   const { temp, loc } = props;
 
   useEffect(() => {
+    setLoading(true);
     function filterLocation() {
       const filteredLocation = cities.filter((city) => city.name === loc);
       if (filteredLocation.length !== 0) {
@@ -51,6 +56,7 @@ const Results = (props) => {
       } else {
         setTimeout(() => {
           setConvertedWeather(weatherArray);
+          setLoading(false);
         }, 500);
       }
     },
@@ -166,10 +172,11 @@ const Results = (props) => {
         <p className={classes.Location}> Unable to find searched location! </p>
       );
     } else if (!convertedTemperature) {
-      return null;
+      return <div className={classes.Location}></div>;
     } else {
       return (
         <React.Fragment>
+          {/* {loading ? <LoadingWheel /> : null} */}
           <Stagger delay={100} duration={500} in={!isLoading}>
             <Fade>
               <div className={classes.Location}>

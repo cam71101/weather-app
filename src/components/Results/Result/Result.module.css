@@ -1,0 +1,91 @@
+.Result {
+  width: 60rem;
+  height: 25rem;
+  box-shadow: 0 0.1rem 1rem #aaaaaa;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-image: linear-gradient(
+    to top,
+    white,
+    var(--light-primary-bg-color)
+  );
+  transition: all 0.2s ease-out;
+}
+
+.Heading {
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Location {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.Temperature {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--dark-primary-bg-color);
+  margin-top: -1rem;
+}
+
+.Description {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 1.2rem;
+  width: 100%;
+  text-align: center;
+  color: var(--dark-primary-bg-color);
+  border-bottom: solid rgb(182, 182, 182) 0.2rem;
+  border-radius: 10%;
+}
+
+.Result img {
+  width: 50px;
+  height: 50px;
+}
+
+.Details {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.Details div {
+  text-align: center;
+  flex: 0 1 33.333333%;
+}
+
+.Detail {
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin-bottom: -1rem;
+}
+
+.Numbers {
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+@media (max-width: 600px) {
+  .Result {
+    width: 30rem;
+    height: 20rem;
+  }
+}

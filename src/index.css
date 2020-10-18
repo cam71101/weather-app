@@ -1,0 +1,40 @@
+:root {
+  --dark-primary-bg-color: #0288D1;
+  --default-primary-bg-color: #03A9F4;
+  --light-primary-bg-color: #B3E5FC; 
+  --text-primary-color: #FFFFFF;
+  --accent-bg-color: #FFEB3B; 
+  --primary-text-color: #212121;
+  --secondary-text-color: #757575;
+  --divider-color: #BDBDBD; 
+}
+
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+html {
+  font-size: 62.5%; 
+}
+
+body {
+
+  font-weight: 400;
+  box-sizing: border-box;
+  font-family: "Lato";
+  line-height: 1.7;
+}

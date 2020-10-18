@@ -1,0 +1,82 @@
+.Switch {
+  position: relative;
+  width: 6rem;
+  height: 3rem;
+}
+.SwitchInput {
+  display: none;
+}
+.SwitchLabel {
+  display: flex;
+  user-select: none;
+  width: 100%;
+  height: 100%;
+  background-image:radial-gradient(circle, var( --light-primary-bg-color),var(--default-primary-bg-color));
+  border-radius: 9999em;
+  cursor: pointer;
+}
+.SwitchLabel::before {
+  content: "";
+  display: block;
+  position: absolute;
+  cursor: pointer;
+}
+
+/* .SwitchLabel::before {
+  width: 100%;
+  height: 100%;
+  background-color: #dedede;
+  border-radius: 9999em;
+  -webkit-transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease;
+} */
+
+.SwitchLabel::before {
+  top: 0;
+  left: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: var(--accent-bg-color);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+  -webkit-transition: left 0.25s ease;
+  transition: left 0.25s ease;
+}
+
+.SwitchInput:checked + .SwitchLabel::before {
+  left: 3rem;
+}
+
+.Temp {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: color 2s ease;
+  transition: color 2s ease;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.F {
+  color: var(--dark-primary-bg-color);
+  -webkit-transition: color .5s ease;
+  transition: color .5s ease;
+}
+
+.C {
+  color: var(--text-primary-color);
+  -webkit-transition: color .5s ease;
+  transition: color .5s ease;
+}
+
+.SwitchInput:checked + .SwitchLabel div:first-child div:last-child {
+  color: var(--dark-primary-bg-color);
+}
+
+.SwitchInput:checked + .SwitchLabel div:first-child div:first-child {
+  color: var(--text-primary-color);
+}
+

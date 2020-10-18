@@ -1,0 +1,64 @@
+.SearchBar {
+  display: flex;
+  justify-content: center;
+  width: 30rem;
+  height: 3.5rem;
+}
+
+.SearchBar Input {
+  color: inherit;
+  background-color: var(--light-primary-bg-color);
+  border-radius: 100px;
+  padding: 0.7rem 2rem;
+  border: none;
+  width: 90%;
+  translate: all 0.2s;
+  margin-right: -2.5rem;
+  transition: all 0.2s;
+  font-size: 1.5rem;
+}
+
+.SearchBar Input:focus {
+  outline: none;
+  width: 100%;
+}
+
+::-webkit-input-placeholder {
+  color: var(--primary-text-color);
+  font-family: Lato;
+  font-weight: 300;
+}
+
+.SearchBar Button {
+  border: none;
+  background-color: inherit;
+}
+
+.SearchBar img {
+}
+
+.SearchBar Button:active {
+  transform: translateY(2px);
+}
+
+.SearchBar Button:focus {
+  outline: none;
+}
+
+.SearchBar Button:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  .SearchBar {
+    width: 40rem;
+    height: 4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .SearchBar {
+    width: 30rem;
+    height: 4rem;
+  }
+}

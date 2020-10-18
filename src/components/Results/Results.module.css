@@ -1,0 +1,22 @@
+.Results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Location {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.Name {
+  font-size: 1.5rem;
+  color: var(--dark-primary-bg-color);
+  margin-left: 0.5rem;
+  font-weight: 700;
+}

@@ -17,8 +17,6 @@ cam71101.github.io/weather-app/
 - Git
 - Github
 
-## Dependencies
-
 ## Authors
 
 David Fisher

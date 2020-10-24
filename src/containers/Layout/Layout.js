@@ -4,19 +4,16 @@ import { ExternalLink } from 'react-external-link';
 
 import SearchBar from '../../components/SearchBar/SearchBar';
 import TemperatureToggle from '../../components/TemperatureToggle/TemperatureToggle';
-import Results from '../../components/Results/Results';
+import Results from '../Results/Results';
 
 import * as actionTypes from '../../store/actions';
 
 import classes from './Layout.module.css';
 
 import Icon from '../../components/Icon/Icon';
-import LoadingWheel from '../../components/LoadingWheel/LoadingWheel';
-import { Fade, Stagger } from 'react-animation-components';
 
 const Layout = (props) => {
   const [searchBarInput, setSearchBarInput] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const handleInput = (input) => {
     setSearchBarInput(input.target.value);
@@ -31,12 +28,6 @@ const Layout = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const location = capitalizeWords(searchBarInput);
-    if (location !== props.loc) {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 1200);
-    }
 
     props.onLocationUpdate(location);
   };
@@ -54,9 +45,6 @@ const Layout = (props) => {
         <TemperatureToggle temperatureToggle={props.onTemperatureToggle} />
       </header>
       <Results />
-      <Fade in={loading}>
-        <LoadingWheel />
-      </Fade>
     </div>
   );
 };
@@ -72,6 +60,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onTemperatureToggle: () =>
       dispatch({ type: actionTypes.TEMPERATURE_TOGGLE }),
+
     onLocationUpdate: (input) =>
       dispatch({ type: actionTypes.UPDATE_LOCATION, locationName: input }),
   };

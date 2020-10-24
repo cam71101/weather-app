@@ -1,26 +1,25 @@
-import * as actionTypes from './actions'
+import * as actionTypes from './actions';
 
 const initialState = {
   location: null,
-  temperature: true
-}
+  temperature: true,
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    
     case actionTypes.TEMPERATURE_TOGGLE:
       return {
         ...state,
-        temperature: !state.temperature
-      }
+        temperature: !state.temperature,
+      };
     case actionTypes.UPDATE_LOCATION:
       return {
         ...state,
-        location: action.locationName
-      }
+        location: action.locationName,
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default reducer
+export default reducer;

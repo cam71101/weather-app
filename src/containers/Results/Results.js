@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { connect } from 'react-redux';
 
-import Result from './Result/Result';
+import Result from '../../components/Result/Result';
 import useHttp from '../../hooks/http';
 
 import cities from '../../JSON/current.city.list.min.json';
@@ -9,9 +9,7 @@ import * as actionTypes from '../../store/actions';
 import { Fade, Stagger } from 'react-animation-components';
 
 import classes from './Results.module.css';
-
-import LoadingWheel from '../LoadingWheel/LoadingWheel';
-import FadeIn from 'react-fade-in';
+import LoadingWheel from '../../components/LoadingWheel/LoadingWheel';
 
 const Results = (props) => {
   const { sendRequest, weatherData, isLoading } = useHttp();
@@ -169,14 +167,19 @@ const Results = (props) => {
   const resultList = useMemo(() => {
     if (error) {
       return (
-        <p className={classes.Location}> Unable to find searched location! </p>
+        <React.Fragment>
+          <p className={classes.Location}>
+            {' '}
+            Unable to find searched location!{' '}
+          </p>
+        </React.Fragment>
       );
     } else if (!convertedTemperature) {
       return <div className={classes.Location}></div>;
     } else {
       return (
         <React.Fragment>
-          {/* {loading ? <LoadingWheel /> : null} */}
+          {loading ? <LoadingWheel /> : null}
           <Stagger delay={100} duration={500} in={!isLoading}>
             <Fade>
               <div className={classes.Location}>
@@ -213,7 +216,7 @@ const Results = (props) => {
         </React.Fragment>
       );
     }
-  }, [isLoading, convertedTemperature, error]);
+  }, [isLoading, convertedTemperature, error, loading]);
 
   return <main className={classes.Results}>{resultList}</main>;
 };

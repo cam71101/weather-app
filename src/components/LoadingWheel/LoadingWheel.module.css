@@ -28,3 +28,9 @@
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 600px) {
+  .LoadingWheel {
+    top: 40rem;
+  }
+}

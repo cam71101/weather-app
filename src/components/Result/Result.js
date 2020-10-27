@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import classes from './Result.module.css';
 import OnImagesLoaded from 'react-on-images-loaded';
+import ReactCountryFlag from 'react-country-flag';
 
 const Result = (props) => {
   const [showImages, setShowImages] = useState(false);
@@ -17,6 +18,8 @@ const Result = (props) => {
     };
   }
 
+  console.log(props.country);
+
   return (
     <OnImagesLoaded
       onLoaded={() => setShowImages(true)}
@@ -30,7 +33,16 @@ const Result = (props) => {
           key={props.index}
         >
           <div className={classes.Heading}>
-            <img src={props.flag} alt="flag" />
+            {/* <img src={props.flag} alt="flag" /> */}
+            <ReactCountryFlag
+              countryCode={props.country}
+              className="emojiFlag"
+              style={{
+                fontSize: '4rem',
+                lineHeight: '2rem',
+              }}
+              svg
+            />
             <div className={classes.Location}>
               <div className={classes.City}>
                 {props.location}, {props.country}

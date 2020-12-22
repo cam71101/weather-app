@@ -1,8 +1,5 @@
-<p align="center">
-
-## Weather City App
-
-</p>
+<h1 align="center">Weather City App</h1>
+<h2 align="center">
 
 <p align="center">
 <img src="https://img.shields.io/badge/madeby-cam71101-green" />
@@ -22,7 +19,7 @@
 <img src="https://res.cloudinary.com/dndp8567v/image/upload/v1608667951/WeatherAppDesktop_e19956018e.gif" />
 </p>
 
-Weather City App allows users to enter a city name and receive current weather data using the <a href="https://openweathermap.org/api"> OpenWeatherMap API </a> . All cities with the specified name are displayed, and a temperature unit toggle is available to switch between Celsius and Fahrenheit.
+Weather City App allows users to enter a city name and receive current weather data using the <a href="https://openweathermap.org/api"> OpenWeatherMap API </a>. All cities with the specified name are displayed, and a temperature unit toggle is available to switch between Celsius and Fahrenheit.
 
 ## Responsive Design
 

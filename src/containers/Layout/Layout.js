@@ -28,7 +28,6 @@ const Layout = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const location = capitalizeWords(searchBarInput);
-
     props.onLocationUpdate(location);
   };
 

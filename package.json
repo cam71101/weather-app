@@ -19,6 +19,7 @@
     "react-external-link": "^1.1.1",
     "react-fade-in": "^1.1.1",
     "react-icomoon": "^2.1.5",
+    "react-images-loaded": "^2.0.0",
     "react-on-images-loaded": "^2.2.5",
     "react-redux": "^7.2.1",
     "react-responsive": "^8.1.0",
@@ -30,7 +31,8 @@
     "react-transition-group": "^4.4.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "svg-country-flags": "^1.2.9"
+    "svg-country-flags": "^1.2.9",
+    "weather-icons-react": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

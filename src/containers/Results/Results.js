@@ -18,19 +18,22 @@ const Results = (props) => {
   const [error, setError] = useState(false);
   const [convertedTemperature, setConvertedTemperature] = useState();
   const [firstLoad, setFirstLoad] = useState(true);
-  const { temp, loc } = props;
+  const { temperature, location } = props;
 
   useEffect(() => {
-    setLoading(true);
+    setError(false);
     function filterLocation() {
-      const filteredLocation = cities.filter((city) => city.name === loc);
+      const filteredLocation = cities.filter((city) => city.name === location);
       if (filteredLocation.length !== 0) {
         setError(false);
         fetchLocation(filteredLocation);
       } else {
-        setError(true);
+        setTimeout(() => {
+          setError(true);
+        }, 500);
       }
     }
+
     const fetchLocation = (filteredLocations) => {
       const filteredLocationsIDs = [];
       filteredLocations.forEach((location) => {
@@ -41,20 +44,23 @@ const Results = (props) => {
         `group?id=${filteredLocationsIDsConcat}&units=metric&appid=98df791eae9d9eb123a6ffbaf2aff6c6`
       );
     };
-    if (loc) {
+
+    if (location) {
+      setLoading(true);
       filterLocation();
     }
-  }, [loc, sendRequest]);
+  }, [location, sendRequest]);
 
   const loadResults = useCallback(
     (weatherArray) => {
       if (firstLoad) {
+        setLoading(true);
         setConvertedWeather(weatherArray);
         setFirstLoad(false);
       } else {
         setTimeout(() => {
           setConvertedWeather(weatherArray);
-          setLoading(false);
+          // setLoading(false);
         }, 500);
       }
     },
@@ -124,7 +130,7 @@ const Results = (props) => {
     const convertWeather = () => {
       const temperatureUpdated = convertedWeather.map((locationWeather) => {
         const temperatureUpdate = { ...locationWeather };
-        if (temp === true) {
+        if (temperature === true) {
           temperatureUpdate.temp.toString().length <= 5
             ? (temperatureUpdate.temp = temperatureUpdate.temp + '°C')
             : (temperatureUpdate.temp = convertToCelsius(
@@ -136,10 +142,11 @@ const Results = (props) => {
         return temperatureUpdate;
       });
       setConvertedTemperature(temperatureUpdated);
+      setLoading(false);
     };
 
     convertedWeather && convertWeather();
-  }, [convertedWeather, temp]);
+  }, [convertedWeather, temperature]);
 
   const convertVisibility = (visibility) => visibility / 1000 + 'km';
   const convertWindSpeed = (windSpeed) => windSpeed + 'km/h';
@@ -175,44 +182,51 @@ const Results = (props) => {
         </React.Fragment>
       );
     } else if (!convertedTemperature) {
-      return <div className={classes.Location}></div>;
+      return (
+        <div className={classes.Location}>
+          {loading ? <LoadingWheel /> : null}
+        </div>
+      );
     } else {
       return (
         <React.Fragment>
-          {loading ? <LoadingWheel /> : null}
-          <Stagger delay={100} duration={500} in={!isLoading}>
-            <Fade>
-              <div className={classes.Location}>
-                Found {convertedTemperature.length}{' '}
-                {convertedTemperature.length === 1 ? 'location' : 'locations'}{' '}
-                named
-                <span className={classes.Name}>
-                  {' '}
-                  {convertedTemperature[0].name}
-                </span>
-              </div>
-            </Fade>
-            {convertedTemperature.map((city, index) => (
-              <Fade key={index}>
-                <Result
-                  isLoading={isLoading}
-                  temperature={city.temp}
-                  description={city.description}
-                  visibility={city.visibility}
-                  wind={city.wind}
-                  sunRise={city.sunrise}
-                  humidity={city.humidity}
-                  cloudiness={city.clouds}
-                  sunSet={city.sunset}
-                  icon={city.icon}
-                  flag={city.flag}
-                  key={index}
-                  country={city.country}
-                  location={city.name}
-                />
+          {loading ? (
+            <LoadingWheel />
+          ) : (
+            <Stagger in>
+              <Fade>
+                <div className={classes.Location}>
+                  Found {convertedTemperature.length}{' '}
+                  {convertedTemperature.length === 1 ? 'location' : 'locations'}{' '}
+                  named
+                  <span className={classes.Name}>
+                    {' '}
+                    {convertedTemperature[0].name}
+                  </span>
+                </div>
               </Fade>
-            ))}
-          </Stagger>
+              {convertedTemperature.map((city, index) => (
+                <Fade key={index}>
+                  <Result
+                    isLoading={isLoading}
+                    temperature={city.temp}
+                    description={city.description}
+                    visibility={city.visibility}
+                    wind={city.wind}
+                    sunRise={city.sunrise}
+                    humidity={city.humidity}
+                    cloudiness={city.clouds}
+                    sunSet={city.sunset}
+                    icon={city.icon}
+                    flag={city.flag}
+                    key={index}
+                    country={city.country}
+                    location={city.name}
+                  />
+                </Fade>
+              ))}
+            </Stagger>
+          )}
         </React.Fragment>
       );
     }
@@ -223,8 +237,8 @@ const Results = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    temp: state.temperature,
-    loc: state.location,
+    temperature: state.temperature,
+    location: state.location,
   };
 };
 

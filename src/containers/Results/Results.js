@@ -60,7 +60,6 @@ const Results = (props) => {
       } else {
         setTimeout(() => {
           setConvertedWeather(weatherArray);
-          // setLoading(false);
         }, 500);
       }
     },

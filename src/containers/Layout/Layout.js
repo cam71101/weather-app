@@ -35,11 +35,9 @@ const Layout = (props) => {
     <div className={classes.Layout}>
       <header className={classes.Header}>
         <h1>Weather City App</h1>
-
         <ExternalLink href="https://github.com/cam71101/weather-app">
           <Icon className={classes.Icon} icon="github" />
         </ExternalLink>
-
         <SearchBar updateLocation={handleSubmit} inputChange={handleInput} />
         <TemperatureToggle temperatureToggle={props.onTemperatureToggle} />
       </header>

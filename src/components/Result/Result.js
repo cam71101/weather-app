@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   WiDaySunny,
   WiDayHaze,
-  WiDaySunnyOvercast,
   WiCloudy,
   WiDayRainMix,
 } from 'weather-icons-react';
